@@ -28,6 +28,15 @@ A modern, dark-mode enabled React frontend for the **Smart Excel-JSON Tool** —
 
 ---
 
+## 🧪 AI Integration (Gemini)
+
+This tool uses **Gemini AI** under the hood to:
+- Clean and normalize messy Excel/JSON data
+- Suggest or auto-generate schemas
+- Visually mark AI-modified cells
+
+---
+
 ## 🧰 Tech Stack & Tools Used
 
 ### ⚛️ Frontend Framework & Core
@@ -82,24 +91,26 @@ src/
 
 ---
 
-## 🔥 Features
+## 🧠 Backend API
 
-- ✅ **Excel → JSON** conversion (raw or AI-enhanced)
-- ✅ **JSON → Excel** generation (with intelligent formatting)
-- ✅ **Schema Generator** from Excel preview
-- 🧠 AI-enhanced insights via Gemini
-- 💡 Highlights changed cells + adds tooltips
-- 🌗 Fully dark-mode optimized
-- 📦 Clean JSON editor, syntax viewer, file uploader
+All requests are made to: [`https://smartexceljson.me`](https://smartexceljson.me)
 
----
+### `/excel-to-json`
+- Method: `POST`
+- Input: `.xlsx`, `.xls`, or `.xlsm`
+- Query Param: `?useAI=true` (optional)
+- Output: Raw and/or AI-enhanced JSON
 
-## 🧪 AI Integration (Gemini)
+### `/json-to-excel`
+- Method: `POST`
+- Input: JSON string or file
+- Query Param: `?useAI=true` (optional)
+- Output: Excel (.xlsx) — Base64 download
 
-This tool uses **Gemini AI** under the hood to:
-- Clean and normalize messy Excel/JSON data
-- Suggest or auto-generate schemas
-- Visually mark AI-modified cells
+### `/generate-schema`
+- Method: `POST`
+- Input: Excel file
+- Output: JSON Schema
 
 ---
 
