@@ -50,7 +50,7 @@ A modern, dark-mode enabled React frontend for the **Smart Excel-JSON Tool** —
 - **React Dropzone**
 - **Axios**
 
-### 🎯 Additional Tooling
+### 🎯 Developer Tools
 - **React Intersection Observer**
 - **ESLint**
 - **TypeScript**
@@ -82,26 +82,24 @@ src/
 
 ---
 
-## 🧠 Backend API
+## 🔥 Features
 
-All requests are made to: [`https://smartexceljson.me`](https://smartexceljson.me)
+- ✅ **Excel → JSON** conversion (raw or AI-enhanced)
+- ✅ **JSON → Excel** generation (with intelligent formatting)
+- ✅ **Schema Generator** from Excel preview
+- 🧠 AI-enhanced insights via Gemini
+- 💡 Highlights changed cells + adds tooltips
+- 🌗 Fully dark-mode optimized
+- 📦 Clean JSON editor, syntax viewer, file uploader
 
-### `/excel-to-json`
-- Method: `POST`
-- Input: `.xlsx`, `.xls`, or `.xlsm`
-- Query Param: `?useAI=true` (optional)
-- Output: Raw and/or AI-enhanced JSON
+---
 
-### `/json-to-excel`
-- Method: `POST`
-- Input: JSON string or file
-- Query Param: `?useAI=true` (optional)
-- Output: Excel (.xlsx) — Base64 download
+## 🧪 AI Integration (Gemini)
 
-### `/generate-schema`
-- Method: `POST`
-- Input: Excel file
-- Output: JSON Schema
+This tool uses **Gemini AI** under the hood to:
+- Clean and normalize messy Excel/JSON data
+- Suggest or auto-generate schemas
+- Visually mark AI-modified cells
 
 ---
 
@@ -122,4 +120,4 @@ npm run dev
 
 ## 📄 License
 
-MIT © 2025 [Suman Kumar](https://github.com/sumankumar)
+MIT © 2025 [Suman Kumar](https://github.com/sumankumar5)
