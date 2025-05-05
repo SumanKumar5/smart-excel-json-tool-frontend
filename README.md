@@ -6,7 +6,6 @@
 [![Vite](https://img.shields.io/badge/Vite-Built--with-646CFF?logo=vite)](https://vitejs.dev/)
 [![Live](https://img.shields.io/badge/Live-smartexceljson.me-success?logo=vercel)](https://smartexceljson.me)
 
-![App Preview](./public/preview.png)
 
 ### ✨ Live Demo
 
