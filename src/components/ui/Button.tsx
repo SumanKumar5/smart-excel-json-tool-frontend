@@ -29,7 +29,6 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   fullWidth,
   onClick,
-  ...props
 }) => {
   const [ripples, setRipples] = React.useState<
     { x: number; y: number; id: number }[]
@@ -129,7 +128,6 @@ const Button: React.FC<ButtonProps> = ({
       )}
       disabled={disabled || isLoading}
       onClick={handleClick}
-      {...props}
     >
       {/* Ripple effects */}
       {ripples.map(({ x, y, id }) => (

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { useDropzone, FileRejection } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
 import { Upload, File, AlertCircle, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../../utils/cn";
@@ -55,7 +55,6 @@ const FileUploader: React.FC<FileUploaderProps> = ({
   return (
     <div className={className}>
       <motion.div
-        {...getRootProps()}
         whileHover={{ scale: 1.01 }}
         className={cn(
           "border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-300",
@@ -66,50 +65,52 @@ const FileUploader: React.FC<FileUploaderProps> = ({
             "border-red-300 dark:border-red-500 bg-red-50/50 dark:bg-red-900/20",
         )}
       >
-        <input {...getInputProps()} />
-        <motion.div
-          className="flex flex-col items-center justify-center space-y-3"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div {...getRootProps({ className: 'focus:outline-none' })}>
+          <input {...getInputProps()} />
           <motion.div
-            className={cn(
-              "p-4 rounded-full",
-              isDragActive
-                ? "bg-blue-100/80 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
-                : "bg-slate-100/80 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300",
-            )}
-            animate={{
-              scale: isDragActive ? [1, 1.1, 1] : 1,
-              rotate: isDragActive ? [0, -10, 10, 0] : 0,
-            }}
-            transition={{ duration: 0.4 }}
+            className="flex flex-col items-center justify-center space-y-3"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <Upload size={24} />
-          </motion.div>
-          <p className="text-slate-600 dark:text-slate-300 font-medium">
-            {label}
-          </p>
-          {!error && (
-            <p className="text-slate-500 dark:text-slate-400 text-sm">
-              {Object.entries(acceptedFileTypes)
-                .map(([key]) => `${key.replace("application/", "")}`)
-                .join(", ")}{" "}
-              {maxSize && `(Max: ${maxSize / (1024 * 1024)}MB)`}
-            </p>
-          )}
-          {error && (
             <motion.div
-              className="text-red-500 dark:text-red-400 flex items-center space-x-1 text-sm"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+              className={cn(
+                "p-4 rounded-full",
+                isDragActive
+                  ? "bg-blue-100/80 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400"
+                  : "bg-slate-100/80 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300",
+              )}
+              animate={{
+                scale: isDragActive ? [1, 1.1, 1] : 1,
+                rotate: isDragActive ? [0, -10, 10, 0] : 0,
+              }}
+              transition={{ duration: 0.4 }}
             >
-              <AlertCircle size={16} />
-              <span>{error}</span>
+              <Upload size={24} />
             </motion.div>
-          )}
-        </motion.div>
+            <p className="text-slate-600 dark:text-slate-300 font-medium">
+              {label}
+            </p>
+            {!error && (
+              <p className="text-slate-500 dark:text-slate-400 text-sm">
+                {Object.entries(acceptedFileTypes)
+                  .map(([key]) => `${key.replace("application/", "")}`)
+                  .join(", ")}{" "}
+                {maxSize && `(Max: ${maxSize / (1024 * 1024)}MB)`}
+              </p>
+            )}
+            {error && (
+              <motion.div
+                className="text-red-500 dark:text-red-400 flex items-center space-x-1 text-sm"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <AlertCircle size={16} />
+                <span>{error}</span>
+              </motion.div>
+            )}
+          </motion.div>
+        </div>
       </motion.div>
 
       <AnimatePresence>

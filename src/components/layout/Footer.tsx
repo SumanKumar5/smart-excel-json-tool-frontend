@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://github.com/yourusername/smart-excel-json"
+                  href="https://github.com/SumanKumar5/smart-excel-json-tool-frontend"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-slate-300 dark:text-slate-400 hover:text-white transition-colors group"
