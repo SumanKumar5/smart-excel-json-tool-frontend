@@ -4,7 +4,7 @@
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer--Motion-Animation-EF6C00?logo=framer)](https://www.framer.com/motion/)
 [![Vite](https://img.shields.io/badge/Vite-Built--with-646CFF?logo=vite)](https://vitejs.dev/)
-[![Live](https://img.shields.io/badge/Live-smartexceljson.me-success?logo=vercel)](https://www.smartexceljson.live/)
+[![Live](https://img.shields.io/badge/Live-smartexceljson.live-success?logo=vercel)](https://www.smartexceljson.live/)
 
 
 ### ✨ Live Demo
@@ -59,7 +59,7 @@ A modern, dark-mode enabled React frontend for the **Smart Excel-JSON Tool** —
 
 ## 🚀 Live App
 
-🔗 **Live Frontend:** [https://www.smartexceljson.live](https://www.smartexceljson.live) 
+🔗 **Live Frontend:** [`https://www.smartexceljson.live`](https://www.smartexceljson.live) 
 🔗 **Backend API:** [`https://smartexceljson.me`](https://smartexceljson.me)
 
 ---
