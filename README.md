@@ -8,6 +8,10 @@
 
 ![App Preview](./public/preview.png)
 
+### ✨ Live Demo
+
+![Smart Excel-JSON Demo](./public/demo.gif)
+
 A modern, dark-mode enabled React frontend for the **Smart Excel-JSON Tool** — allowing seamless conversion between Excel and JSON formats with optional AI enhancement. Built to align with high visual standards like those seen on CSS Design Awards.
 
 ---
@@ -22,6 +26,35 @@ A modern, dark-mode enabled React frontend for the **Smart Excel-JSON Tool** —
 - 🧩 Syntax highlighting via **Monaco Editor**
 - 📤 File uploads & downloads (Base64 for Excel)
 - 📱 Fully responsive + mobile-friendly
+
+---
+
+## 🧰 Tech Stack & Tools Used
+
+### ⚛️ Frontend Framework & Core
+- **React 18.3.1** with **TypeScript**
+- **Vite 5.4.2** as the build tool
+- **React Router DOM 6.18.0** for client-side routing
+
+### 🎨 UI & Styling
+- **Tailwind CSS 3.4.1**
+- **Framer Motion**
+- **Lucide React**
+- `clsx` + `tailwind-merge`
+
+### 🧠 Code Editing & JSON Visualization
+- **Monaco Editor** (`@monaco-editor/react`)
+- **React JSON View Lite**
+- **React Syntax Highlighter**
+
+### 📂 File Handling & Networking
+- **React Dropzone**
+- **Axios**
+
+### 🎯 Additional Tooling
+- **React Intersection Observer**
+- **ESLint**
+- **TypeScript**
 
 ---
 
@@ -46,17 +79,6 @@ src/
 ├── App.tsx                # Main routing & layout
 ├── main.tsx               # App entry point
 ```
-
----
-
-## 📦 Tech Stack
-
-- **React 18 + Vite**
-- **TailwindCSS 3.4**
-- **Framer Motion** for animation
-- **ShadCN/UI** + **Lucide Icons**
-- **Monaco Editor** for code previews
-- **Axios** for backend API integration
 
 ---
 
@@ -87,7 +109,7 @@ All requests are made to: [`https://smartexceljson.me`](https://smartexceljson.m
 
 ```bash
 git clone https://github.com/SumanKumar5/smart-excel-json-tool-frontend.git
-cd smart-excel-json-frontend
+cd smart-excel-json-tool-frontend
 npm install
 
 # Create a .env file in the root with:
@@ -100,4 +122,4 @@ npm run dev
 
 ## 📄 License
 
-MIT © 2025 [Suman Kumar](https://github.com/SumanKumar5)
+MIT © 2025 [Suman Kumar](https://github.com/sumankumar)
