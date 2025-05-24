@@ -22,15 +22,10 @@ const JsonToExcelConverter: React.FC = () => {
   const [fileMode, setFileMode] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAiLoading, setIsAiLoading] = useState(false);
-  const [excelFile, setExcelFile] = useState<{
-    url: string;
-    filename: string;
-  } | null>(null);
-  const [aiExcelFile, setAiExcelFile] = useState<{
-    url: string;
-    filename: string;
-  } | null>(null);
+  const [excelFile, setExcelFile] = useState<{ url: string; filename: string } | null>(null);
+  const [aiExcelFile, setAiExcelFile] = useState<{ url: string; filename: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isJsonValid, setIsJsonValid] = useState(true); // ✅ NEW STATE
 
   const handleFilesSelected = (selectedFiles: File[]) => {
     setFiles(selectedFiles);
@@ -78,16 +73,6 @@ const JsonToExcelConverter: React.FC = () => {
         jsonData = jsonInput;
       }
 
-      // Validate JSON before sending
-      try {
-        JSON.parse(jsonData);
-      } catch {
-        setError("Invalid JSON format. Please check your input.");
-        setIsLoading(false);
-        setIsAiLoading(false);
-        return;
-      }
-
       const formData = new FormData();
       if (fileMode) {
         formData.append("file", files[0]);
@@ -98,16 +83,17 @@ const JsonToExcelConverter: React.FC = () => {
 
       const result = await jsonToExcel(jsonData, useAi);
 
+      const filenamePrefix = useAi ? "ai-enhanced" : "converted";
+
+      const output = {
+        url: result.fileUrl,
+        filename: `${filenamePrefix}-${Date.now()}.xlsx`,
+      };
+
       if (useAi) {
-        setAiExcelFile({
-          url: result.fileUrl,
-          filename: `ai-enhanced-${Date.now()}.xlsx`,
-        });
+        setAiExcelFile(output);
       } else {
-        setExcelFile({
-          url: result.fileUrl,
-          filename: `converted-${Date.now()}.xlsx`,
-        });
+        setExcelFile(output);
       }
     } catch (err) {
       setError((err as Error).message || "Error converting JSON to Excel");
@@ -178,6 +164,7 @@ const JsonToExcelConverter: React.FC = () => {
             <JsonEditor
               value={jsonInput}
               onChange={handleJsonChange}
+              onValidate={setIsJsonValid} // ✅ Hook into Monaco validation
               minHeight="200px"
             />
           )}
@@ -187,7 +174,7 @@ const JsonToExcelConverter: React.FC = () => {
               onClick={() => handleConvert(false)}
               leftIcon={<FileSpreadsheet size={16} />}
               isLoading={isLoading}
-              disabled={isLoading || isAiLoading}
+              disabled={isLoading || isAiLoading || (!fileMode && !isJsonValid)} // ✅ Disabled logic
             >
               Convert to Excel
             </Button>
@@ -197,7 +184,7 @@ const JsonToExcelConverter: React.FC = () => {
               onClick={() => handleConvert(true)}
               leftIcon={<Rocket size={16} />}
               isLoading={isAiLoading}
-              disabled={isLoading || isAiLoading}
+              disabled={isLoading || isAiLoading || (!fileMode && !isJsonValid)} // ✅ Disabled logic
             >
               Convert with AI Enhancement
             </Button>

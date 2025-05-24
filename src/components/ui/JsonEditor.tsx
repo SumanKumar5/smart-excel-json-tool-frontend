@@ -8,6 +8,7 @@ import { cn } from "../../utils/cn";
 interface JsonEditorProps {
   value: string;
   onChange: (value: string) => void;
+  onValidate?: (isValid: boolean) => void; // ✅ NEW PROP
   minHeight?: string;
   className?: string;
   readOnly?: boolean;
@@ -18,6 +19,7 @@ interface JsonEditorProps {
 const JsonEditor: React.FC<JsonEditorProps> = ({
   value,
   onChange,
+  onValidate,
   minHeight = "300px",
   className,
   readOnly = false,
@@ -53,14 +55,8 @@ const JsonEditor: React.FC<JsonEditorProps> = ({
   }, []);
 
   const handleEditorChange = (value: string | undefined) => {
-    if (!value) return;
-
-    try {
-      JSON.parse(value);
-      setError("");
-      onChange(value);
-    } catch (e) {
-      setError((e as Error).message);
+    if (value !== undefined) {
+      onChange(value); // just update value, validation handled by onMount
     }
   };
 
@@ -78,6 +74,26 @@ const JsonEditor: React.FC<JsonEditorProps> = ({
           defaultLanguage="json"
           value={value}
           onChange={handleEditorChange}
+          onMount={(editor, monaco) => {
+            const model = editor.getModel();
+            if (!model) return;
+
+            const validate = () => {
+              const markers = monaco.editor.getModelMarkers({ resource: model.uri });
+              const isValid = markers.length === 0;
+              onValidate?.(isValid);
+              if (!isValid && markers[0]?.message) {
+                setError(markers[0].message);
+              } else {
+                setError("");
+              }
+            };
+
+            validate(); // initial check
+            editor.onDidChangeModelDecorations(() => {
+              requestAnimationFrame(validate);
+            });
+          }}
           theme={theme === "dark" ? "custom-dark" : "light"}
           options={{
             minimap: { enabled: false },
